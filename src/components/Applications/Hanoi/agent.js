@@ -53,26 +53,67 @@ Remember:
 // }
  
 export const hanoi = (from, via, to, n, moves) => {
-   alert("complete hanoi function first!")
-
+   if (n === 1) {
+      moves.push([from, to])
+   } else {
+      hanoi(from, to, via, n - 1, moves)
+      moves.push([from, to])
+      hanoi(via, from, to, n - 1, moves)
+      
+   }
 }
-
 export const exhanoi_1 = (A, B, C, n, moves) => {
-  alert("complete exhanoi_1 function first!")
-
+   if (n === 1) {
+      hanoi(C,A,B,2, moves)
+      moves.push([A,C])
+      hanoi(B,A,C,2, moves)
+   } else {
+       exhanoi_1( A , B , C , n - 1, moves)
+       hanoi( C , A , B , 3*n-1, moves)
+       moves.push([A,C])
+       hanoi( B , A , C , 3*n-1, moves)
+      
+   }
 }
-
 export const exhanoi_2 = (A, B, C, n, moves) => {
-  alert("complete exhanoi_2 function first!")
-
+   if (n === 1) {
+       moves.push([A, C])
+       moves.push([B, C])
+   } else {
+       exhanoi_2( A , B , C , n - 1, moves)
+       moves.push([B, A])
+       hanoi( C , B , A , 2 * n - 2, moves)
+       hanoi( A , B , C , 2 * n, moves)
+   }
 }
-  
-export const exhanoi_3 = (A, B, C, n, moves) => {
-  alert("complete exhanoi_3 function first!")
 
+export const exhanoi_3 = (A, B, C, n, moves) => {
+   if (n === 1) {
+       moves.push([A, C])
+       hanoi( C , B , A , 2, moves)
+       moves.push([B, C])
+       hanoi( A , B , C , 2, moves)
+   } else {
+       exhanoi_3( A , B , C , n - 1, moves)
+       moves.push([A, B])
+       hanoi( C , B , A , 3 * n - 3, moves)
+       moves.push([B, C])
+       hanoi( A , B , C , 3 * n - 3, moves)
+       hanoi( C , B , A , 3 * n - 1, moves)
+       moves.push([B, C])
+       hanoi( A , B , C , 3 * n - 1, moves)
+   }
 }
 
 export const exhanoi_4 = (A, B, C, n, moves) => {
-  alert("complete exhanoi_4 function first!")
-
-}
+   if (n === 1) {
+       moves.push([C, B])
+       hanoi( B , C , A , 3 * n, moves)
+       hanoi( A , B , C , 6 * n, moves)
+   } else {
+       exhanoi_4( A , B , C , n - 1, moves)
+       hanoi( C , A , B , 6 * n - 5, moves)
+       hanoi( B , C , A , 6 * n - 3, moves)
+       hanoi( A , B , C , 6 * n , moves)
+   }
+} 
